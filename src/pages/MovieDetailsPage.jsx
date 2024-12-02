@@ -1,5 +1,5 @@
 import {useEffect, useRef, Suspense } from 'react';
-import { NavLink, useParams, Outlet, Link } from 'react-router-dom';
+import { NavLink, useParams, Outlet, Link, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../films-api';
 import { useState } from 'react';
 import NotFoundPage from "../pages/NotFoundPage";
@@ -7,8 +7,9 @@ import NotFoundPage from "../pages/NotFoundPage";
 const MovieDetailsPage = () => {
     const { movie_id } = useParams();
     const [movie, setMovie] = useState(null);
-  const [error, setError] = useState(null);
-  const backLinkHref = useRef(location.state?.from ?? '/movies');
+    const [error, setError] = useState(null);
+    const location = useLocation();
+    const backLinkHref = useRef(location.state?.from ?? '/movies');
 
 
   useEffect(() => {
